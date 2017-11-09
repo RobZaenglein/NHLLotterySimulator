@@ -7,6 +7,7 @@ class ApiTeam
     public $full_name;
     public $abbreviation;
     public $conference;
+    public $api_id;
     public $games_played;
     public $points;
     public $wins;
@@ -22,6 +23,7 @@ class ApiTeam
         $this->full_name = $team->team->full_name;
         $this->abbreviation = $team->team->abbreviation;
         $this->conference = $team->conference;
+        $this->api_id = $team->team->id;
         $this->games_played = $team->games_played;
         $this->points = $team->points;
         $this->wins = $team->wins;

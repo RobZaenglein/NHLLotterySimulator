@@ -15,8 +15,8 @@ class CreateGameTeamsTable extends Migration
     {
         Schema::create('game_teams', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('game_id')->index();
-            $table->integer('team_id')->index();
+            $table->integer('game_id');
+            $table->integer('team_id');
             $table->string('location');
             $table->integer('score');
             $table->string('result')->nullable();

@@ -31,14 +31,16 @@ class Team extends Model
 
     /**
      * @param ApiTeam $apiTeam
+     * @return Team
      */
     public static function fromApiTeam(ApiTeam $apiTeam)
     {
         $team = new Team();
         
-        $team->full_name = $apiTeam->team->full_name;
-        $team->abbreviation = $apiTeam->team->abbreviation;
+        $team->name = $apiTeam->full_name;
+        $team->abbreviation = $apiTeam->abbreviation;
         $team->conference = $apiTeam->conference;
+        $team->api_id = $apiTeam->api_id;
         $team->games_played = $apiTeam->games_played;
         $team->points = $apiTeam->points;
         $team->wins = $apiTeam->wins;
@@ -50,7 +52,7 @@ class Team extends Model
         $team->last_ten_record = $apiTeam->last_ten_games_record;
         $team->streak = $apiTeam->streak;
 
-        $team->save();
+        return $team;
     }
 
     /**
