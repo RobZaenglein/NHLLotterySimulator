@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Collection;
+
 class Standings
 {
     const DIVISION_PLAYOFFS_CUTOFF = 3;
@@ -15,17 +17,15 @@ class Standings
     /**
      * Takes standings 1-31 by points and returns the lottery
      *
-     * @param array $standings
-     * @return array
+     * @param Collection $standings
+     * @return Collection
      */
-    public function determineLottery(array $standings)
+    public static function determineLottery(Collection $standings)
     {
-        foreach ($standings as &$team) {
-            $team->points_percentage = $team->points / ($team->games_played * 2);
-        }
+        $standings = $standings->all();
 
         foreach(self::CONFERENCES as $conference) {
-            $potentialLottery[$conference] = array_filter($standings, function($team) use ($conference) {
+            $potentialLottery[$conference] = array_filter($standings, function($team) use($conference) {
                 return $team->conference == $conference && $team->division_ranking > self::DIVISION_PLAYOFFS_CUTOFF;
             });
 
@@ -36,13 +36,29 @@ class Standings
             $potentialLottery[$conference] = array_slice($potentialLottery[$conference], self::NUM_WILDCARDS);
         }
 
-        $lottery = array_merge($potentialLottery[self::CONFERENCE_EAST], $potentialLottery[self::CONFERENCE_WEST]);
+        $lottery = array_merge($potentialLottery[self::CONFERENCE_WEST], $potentialLottery[self::CONFERENCE_EAST]);
 
         usort($lottery, function($team1, $team2) {
+            if($team1->points_percentage == $team2->points_percentage) {
+                return $team1->regulation_overtime_wins > $team2->regulation_overtime_wins ? 1 : -1;
+            }
             return $team1->points_percentage > $team2->points_percentage ? 1 : -1;
         });
 
-        return $lottery;
+        return collect($lottery);
+    }
+
+
+    /**
+     * Gives playoff teams ordered by points percentage ascending
+     *
+     * @param Collection $standings
+     * @param Collection $lottery
+     * @return Collection
+     */
+    public static function remainingStandings(Collection $standings, \Illuminate\Support\Collection $lottery)
+    {
+        return $standings->diff($lottery)->reverse();
     }
 
     /**

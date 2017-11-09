@@ -19,13 +19,16 @@ class CreateTeamsTable extends Migration
             $table->string('abbreviation');
             $table->string('conference');
             $table->integer('games_played');
+            $table->integer('points');
             $table->integer('wins');
             $table->integer('losses');
             $table->integer('overtime_losses');
-            $table->decimal('points_percentage')->index();
-            $table->integer('regulation_plus_overtime_wins');
-            $table->string('record_last_ten');
+            $table->integer('regulation_overtime_wins');
+            $table->integer('division_ranking');
+            $table->decimal('points_percentage');
+            $table->string('last_ten_record');
             $table->string('streak');
+            $table->timestamps();
         });
     }
 
@@ -36,6 +39,6 @@ class CreateTeamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('password_resets');
+        Schema::dropIfExists('teams');
     }
 }
