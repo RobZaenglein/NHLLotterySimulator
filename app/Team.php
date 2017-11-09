@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
+    public function gameTeam()
+    {
+        return $this->hasMany(GameTeam::class);
+    }
     /**
      * @param ApiTeam $apiTeam
      */

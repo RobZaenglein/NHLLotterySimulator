@@ -15,6 +15,7 @@ class CreateTeamsTable extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('api_id');
             $table->string('name');
             $table->string('abbreviation');
             $table->string('conference');
