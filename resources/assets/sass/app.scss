@@ -7,3 +7,74 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.header {
+  background-color: #2980b9;
+  padding: 15px;
+  margin-bottom:20px;
+  text-align:center;
+  color: #ecf0f1;
+  border-bottom: 1px solid #2c3e50;
+  a {
+    text-decoration: none;
+    color: inherit;
+    :hover {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
+.logo-small {
+  height: 20px;
+  margin-top: -3px;
+}
+.logo-md {
+  height:100px;
+}
+a.game {
+  text-decoration: none;
+  color:inherit;
+  :hover {
+    text-decoration: none;
+  }
+}
+.game-box {
+  background-color: white;
+  padding: 5px;
+  .heading {
+    div {
+      float: left;
+      margin-right: 10px;
+    }
+    .team-name {
+      margin-top: 25px;
+      h2, h4 {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+    .score {
+      h1 {
+        margin-top: 30px;
+      }
+    }
+  }
+  :after {
+    clear: both;
+  }
+}
+.team-stats {
+  background-color: white;
+  padding:10px;
+  font-size: 17px;
+  ul {
+    margin:0;
+    padding: 0;
+    li {
+      list-style-type: none;
+    }
+  }
+}
+.game-date {
+  margin-top: 0;
+}

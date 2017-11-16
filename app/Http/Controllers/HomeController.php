@@ -13,10 +13,20 @@ class HomeController extends Controller
 {
     public function home()
     {
+        $standings = Team::orderBy('points_percentage', 'desc')->get();
+        $lottery = Standings::determineLottery($standings);
+        $remaining = Standings::remainingStandings($standings, $lottery);
+        $todaysGames = Game::todaysGames();
 
-//        $standings = Team::orderBy('points_percentage', 'desc')->get();
-//        $lottery = Standings::determineLottery($standings);
-//        $remaining = Standings::remainingStandings($standings, $lottery);
-//        dd($remaining);
+        foreach($todaysGames as $game) {
+            $game->updateFromApi();
+        }
+
+        return view('home', [
+            'lottery' => $lottery,
+            'playoffs' => $remaining,
+            'todaysGames' => $todaysGames
+        ]);
+
     }
 }

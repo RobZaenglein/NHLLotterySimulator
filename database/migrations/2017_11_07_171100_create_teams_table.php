@@ -17,7 +17,11 @@ class CreateTeamsTable extends Migration
             $table->increments('id');
             $table->integer('api_id');
             $table->string('name');
+            $table->string('city');
+            $table->string('nickname');
             $table->string('abbreviation');
+            $table->string('image_path');
+            $table->string('primary_color');
             $table->string('conference');
             $table->integer('games_played');
             $table->integer('points');

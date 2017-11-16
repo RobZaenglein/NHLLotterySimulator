@@ -6,7 +6,11 @@ class ApiTeam
 {
     public $full_name;
     public $abbreviation;
+    public $city;
+    public $nickname;
     public $conference;
+    public $image_path;
+    public $primary_color;
     public $api_id;
     public $games_played;
     public $points;
@@ -22,7 +26,11 @@ class ApiTeam
     {
         $this->full_name = $team->team->full_name;
         $this->abbreviation = $team->team->abbreviation;
+        $this->city = $team->team->location;
+        $this->nickname = str_replace($team->team->location . ' ', '', $team->team->full_name);
         $this->conference = $team->conference;
+        $this->image_path = '/images/' . strtolower(preg_replace("/[^A-Za-z0-9]/", '-', $team->team->full_name)) . '.png';
+        $this->primary_color = $team->team->colour_1;
         $this->api_id = $team->team->id;
         $this->games_played = $team->games_played;
         $this->points = $team->points;

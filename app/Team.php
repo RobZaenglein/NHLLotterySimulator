@@ -10,6 +10,27 @@ class Team extends Model
     {
         return $this->hasMany(GameTeam::class);
     }
+
+    public function game()
+    {
+        return $this->belongsToMany(Game::class, 'game_teams', 'team_id', 'game_id');
+    }
+
+    public static function upcomingGames($teamId)
+    {
+        $teamGames = Team::where('id', $teamId)
+            ->with(['game' => function($game) use($teamId) {
+                $game->whereDate('game_date', '>=', new \DateTime());
+                $game->orderBy('game_date', 'ASC');
+                $game->limit(5);
+                $game->with(['gameTeam' => function($gameTeam) use($teamId) {
+                    $gameTeam->where('team_id', '!=', $teamId);
+                }]);
+            }])->get();
+
+        return $teamGames;
+    }
+
     /**
      * @param ApiTeam $apiTeam
      */
@@ -39,7 +60,11 @@ class Team extends Model
         
         $team->name = $apiTeam->full_name;
         $team->abbreviation = $apiTeam->abbreviation;
+        $team->city = $apiTeam->city;
+        $team->nickname = $apiTeam->nickname;
         $team->conference = $apiTeam->conference;
+        $team->image_path = $apiTeam->image_path;
+        $team->primary_color = $apiTeam->primary_color;
         $team->api_id = $apiTeam->api_id;
         $team->games_played = $apiTeam->games_played;
         $team->points = $apiTeam->points;

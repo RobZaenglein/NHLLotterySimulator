@@ -16,8 +16,10 @@ class CreateGamesTable extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('api_event_id')->index();
-            $table->timestamp('game_date')->index();
+            $table->dateTime('game_date')->index();
             $table->boolean('is_started')->default(0);
+            $table->integer('period')->default(0);
+            $table->string('clock_label');
             $table->string('clock');
             $table->timestamps();
         });
