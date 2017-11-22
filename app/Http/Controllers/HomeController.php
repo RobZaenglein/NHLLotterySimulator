@@ -18,10 +18,6 @@ class HomeController extends Controller
         $remaining = Standings::remainingStandings($standings, $lottery);
         $todaysGames = Game::todaysGames();
 
-        foreach($todaysGames as $game) {
-            $game->updateFromApi();
-        }
-
         return view('home', [
             'lottery' => $lottery,
             'playoffs' => $remaining,

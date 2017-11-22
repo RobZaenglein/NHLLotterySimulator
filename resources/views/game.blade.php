@@ -35,15 +35,6 @@
                         <li>Streak: <strong>{{$team->team->streak}}</strong></li>
                         <li>Lottery Position: <strong>Out of Lottery</strong></li>
                     </ul>
-                    @if(!str_contains(strtolower($game->clock_label), 'final'))
-                        <hr style="border-color:#{{$team->team->primary_color}}">
-                        <h3>Outcomes</h3>
-                        <ul>
-                            <li>Lottery Position With Loss: <strong>Out of Lottery</strong></li>
-                            <li>Lottery Position With OT Loss: <strong>Out of Lottery</strong></li>
-                            <li>Lottery Position With Win: <strong>Out of Lottery</strong></li>
-                        </ul>
-                    @endif
                 </div>
             @endforeach
         </div>

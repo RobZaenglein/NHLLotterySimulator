@@ -13,6 +13,7 @@ class Game extends Model
     protected $fillable = [
         'is_started',
         'clock',
+        'clock_label',
         'period'
     ];
 
@@ -42,11 +43,11 @@ class Game extends Model
     {
         $apiGame = new ApiGame();
         $apiGame->hydrateFromApi(json_decode(file_get_contents(self::SINGLE_EVENT_API . $this->api_event_id)));
-
         $this->update([
             'is_started' => $apiGame->is_started,
             'period' => $apiGame->period,
-            'clock' => $apiGame->clock
+            'clock' => $apiGame->clock,
+            'clock_label' => $apiGame->clock_label
         ]);
 
         foreach($this->GameTeam as $gameTeam) {

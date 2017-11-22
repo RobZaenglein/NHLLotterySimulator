@@ -25,7 +25,7 @@ class ApiGame
             is_null($game->box_score->progress->segment) ? 0 :  $game->box_score->progress->segment
             : 0;
         $this->clock = is_object($game->box_score) ? $game->box_score->progress->clock : '0:00';
-        $this->clock_label = is_object($game->box_score) ? $game->box_score->progress-> clock_label : '20:00 1st';
+        $this->clock_label = is_object($game->box_score) ? $game->box_score->progress->clock_label : '20:00 1st';
         $this->teams = [
             'home' => [
                 'team' => Team::findByAbbreviation($game->home_team->abbreviation),
