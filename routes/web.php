@@ -13,3 +13,4 @@
 
 Route::get('/', 'HomeController@home');
 Route::get('/game/{id}', 'GameController@game');
+Route::get('/teams/{abbr}', 'TeamController@team');

@@ -1,6 +1,6 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600");
 
 // Variables
 @import "variables";
@@ -8,6 +8,24 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.container {
+  max-width:1020px;
+}
+.table > tbody > tr > td {
+  padding: 2px;
+}
+.table > tbody > tr.separator > td {
+  height: 0;
+  padding: 0;
+  border-top: 5px solid #ddd;
+}
+.table > tbody > tr.eliminated {
+  opacity: .5;
+}
 .header {
   background-color: #2980b9;
   padding: 15px;
@@ -31,6 +49,9 @@
 .logo-md {
   height:100px;
 }
+.logo-lg {
+  height:125px;
+}
 a.game {
   text-decoration: none;
   color:inherit;
@@ -38,9 +59,9 @@ a.game {
     text-decoration: none;
   }
 }
-.game-box {
+.game-box, .team {
   background-color: white;
-  padding: 5px;
+  padding: 10px;
   .heading {
     div {
       float: left;
@@ -77,4 +98,45 @@ a.game {
 }
 .game-date {
   margin-top: 0;
+}
+
+ul.team-info {
+  margin: 10px 0 0;
+  font-size: 16px;
+  > li {
+    padding: 0;
+  }
+  li:after {
+    margin: 0 6px;
+    content: "|";
+    font-weight: bolder;
+  }
+  li:last-child:after {
+    content: "";
+  }
+}
+.team {
+  .team-name {
+    h4  {
+      font-size: 25px;
+    }
+    h2 {
+      font-size: 35px;
+    }
+  }
+}
+div.team-info {
+  background: white;
+  text-align:center;
+  hr {
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+}
+.odds {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  h2,h3,p {
+    margin: 0;
+  }
 }
