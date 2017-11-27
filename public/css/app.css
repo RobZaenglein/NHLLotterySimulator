@@ -8362,6 +8362,10 @@ button.close {
   padding: 2px;
 }
 
+.table > tbody > tr > td a {
+  color: inherit;
+}
+
 .table > tbody > tr.separator > td {
   height: 0;
   padding: 0;
@@ -8376,9 +8380,12 @@ button.close {
   background-color: #2980b9;
   padding: 15px;
   margin-bottom: 20px;
-  text-align: center;
   color: #ecf0f1;
   border-bottom: 1px solid #2c3e50;
+}
+
+.header img {
+  height: 20px;
 }
 
 .header a {
@@ -8416,7 +8423,7 @@ a.game :hover {
 .game-box,
 .team {
   background-color: white;
-  padding: 10px;
+  padding: 20px;
 }
 
 .game-box .heading div,
@@ -8463,6 +8470,10 @@ a.game :hover {
   list-style-type: none;
 }
 
+.team-stats hr {
+  margin: 10px 0;
+}
+
 .game-date {
   margin-top: 0;
 }
@@ -8473,17 +8484,8 @@ ul.team-info {
 }
 
 ul.team-info > li {
+  list-style-type: none;
   padding: 0;
-}
-
-ul.team-info li:after {
-  margin: 0 6px;
-  content: "|";
-  font-weight: bolder;
-}
-
-ul.team-info li:last-child:after {
-  content: "";
 }
 
 .team .team-name h4 {
@@ -8496,7 +8498,6 @@ ul.team-info li:last-child:after {
 
 div.team-info {
   background: white;
-  text-align: center;
 }
 
 div.team-info hr {
@@ -8511,7 +8512,65 @@ div.team-info hr {
 
 .odds h2,
 .odds h3,
-.odds p {
+.odds h4,
+.odds em,
+.odds hr {
   margin: 0;
+}
+
+div.games div.row {
+  margin-bottom: 15px;
+}
+
+div.game {
+  height: 80px;
+}
+
+div.game div.team-image {
+  height: 76px;
+  overflow: hidden;
+  position: relative;
+}
+
+div.game div.team-image img {
+  position: absolute;
+  top: -70%;
+  left: -5%;
+  height: 200px;
+}
+
+div.game-info h4 {
+  font-weight: bold;
+}
+
+div.team-info > div > a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media only screen and (max-width: 390px) {
+  .team .heading .team-name h2 {
+    font-size: 25px;
+  }
+
+  .team .heading .team-name h4 {
+    font-size: 17px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  div.game div.team-image {
+    width: 30%;
+  }
+
+  div.game div.team-image img {
+    height: 100px;
+    top: -20%;
+    left: -5%;
+  }
+
+  div.game div.game-info {
+    width: 69%;
+  }
 }
 

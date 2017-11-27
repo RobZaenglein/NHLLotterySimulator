@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        '\App\Console\Commands\UpdateTodaysGames',
+        '\App\Console\Commands\UpdateTeams',
     ];
 
     /**
@@ -24,8 +25,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('UpdateTodaysGames:updategames')
+            ->everyMinute();
+
+        $schedule->command('teams:update')
+            ->everyTenMinutes();
     }
 
     /**

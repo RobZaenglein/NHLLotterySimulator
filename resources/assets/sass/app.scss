@@ -17,6 +17,9 @@
 }
 .table > tbody > tr > td {
   padding: 2px;
+  a {
+    color: inherit;
+  }
 }
 .table > tbody > tr.separator > td {
   height: 0;
@@ -30,9 +33,11 @@
   background-color: #2980b9;
   padding: 15px;
   margin-bottom:20px;
-  text-align:center;
   color: #ecf0f1;
   border-bottom: 1px solid #2c3e50;
+  img {
+    height: 20px;
+  }
   a {
     text-decoration: none;
     color: inherit;
@@ -61,7 +66,7 @@ a.game {
 }
 .game-box, .team {
   background-color: white;
-  padding: 10px;
+  padding: 20px;
   .heading {
     div {
       float: left;
@@ -95,6 +100,9 @@ a.game {
       list-style-type: none;
     }
   }
+  hr {
+    margin: 10px 0;
+  }
 }
 .game-date {
   margin-top: 0;
@@ -104,15 +112,8 @@ ul.team-info {
   margin: 10px 0 0;
   font-size: 16px;
   > li {
+    list-style-type: none;
     padding: 0;
-  }
-  li:after {
-    margin: 0 6px;
-    content: "|";
-    font-weight: bolder;
-  }
-  li:last-child:after {
-    content: "";
   }
 }
 .team {
@@ -127,7 +128,6 @@ ul.team-info {
 }
 div.team-info {
   background: white;
-  text-align:center;
   hr {
     margin-bottom: 15px;
     margin-top: 15px;
@@ -136,7 +136,65 @@ div.team-info {
 .odds {
   padding-top: 15px;
   padding-bottom: 15px;
-  h2,h3,p {
+  h2,h3,h4,em,hr {
     margin: 0;
+  }
+}
+div.games {
+  div.row {
+    margin-bottom: 15px;
+  }
+}
+div.game {
+  height: 80px;
+  div.team-image {
+    height: 76px;
+    overflow: hidden;
+    position: relative;
+    img {
+      position: absolute;
+      top: -70%;
+      left: -5%;
+      height: 200px;
+    }
+  }
+}
+div.game-info {
+  h4 {
+    font-weight: bold;
+  }
+}
+
+div.team-info > div > a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media only screen and (max-width: 390px) {
+  .team {
+    .heading {
+      .team-name {
+        h2 {
+          font-size: 25px;
+        }
+        h4 {
+          font-size: 17px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  div.game div.team-image {
+    width: 30%;
+    img {
+      height: 100px;
+      top: -20%;
+      left: -5%;
+    }
+  }
+  div.game div.game-info {
+    width: 69%;
   }
 }

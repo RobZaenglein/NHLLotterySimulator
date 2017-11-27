@@ -53,7 +53,7 @@ class Standings
      * Gives playoff teams ordered by points percentage ascending
      *
      * @param Collection $standings
-     * @param Collection $lottery
+     * @param \Illuminate\Support\Collection $lottery
      * @return Collection
      */
     public static function remainingStandings(Collection $standings, \Illuminate\Support\Collection $lottery)

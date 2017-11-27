@@ -16,8 +16,12 @@ class TeamController
         $team->lottery_position = Lottery::teamPosition($lottery, $team);
         if($team->lottery_position) $team->lottery_odds = Lottery::ODDS[$team->lottery_position - 1];
 
+        $upcomingGames = Team::upcomingGames($team->id);
+        //dd($upcomingGames->game->toArray());
+
         return view('team', [
-            'team' => $team
+            'team' => $team,
+            'upcomingGames' => $upcomingGames->game
         ]);
     }
 }

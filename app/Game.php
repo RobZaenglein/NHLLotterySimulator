@@ -27,6 +27,9 @@ class Game extends Model
         return $this->belongsToMany(Team::class, 'game_teams', 'game_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|static[]
+     */
     public static function todaysGames()
     {
         $date = new \DateTime();

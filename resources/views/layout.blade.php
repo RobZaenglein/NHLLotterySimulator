@@ -6,7 +6,14 @@
 </head>
 <body>
 <header class="header">
-    <h3><a href="/">NHL LOTTERY SIMULATOR</a></h3>
+    <div class="container">
+        <h3>
+            <a href="/">NHL LOTTERY SIMULATOR</a>
+            <span class="pull-right">
+                <a href="https://twitter.com/nhllotterysim" target="_blank"><img src="/images/twitter.png"></a>
+            </span>
+        </h3>
+    </div>
 </header>
 
 <div class="container">

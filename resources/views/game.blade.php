@@ -16,7 +16,7 @@
                     <div class="col-xs-6 game-box"  style="border-bottom: 3px solid #{{$team->team->primary_color}}">
                         <div class="heading">
                             <div>
-                                <img src="{{$team->team->image_path}}" class="logo-md">
+                                <a href="/teams/{{strtolower($team->team->abbreviation)}}"><img src="{{$team->team->image_path}}" class="logo-md"></a>
                             </div>
                             <div class="team-name">
                                 <h4>{{$team->team->city}}</h4>

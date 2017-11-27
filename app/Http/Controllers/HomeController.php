@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $standings = Team::orderBy('points_percentage', 'desc')->get();
+        $standings = Team::orderBy('points_percentage', 'DESC')->get();
         $lottery = Standings::determineLottery($standings);
         $odds = Lottery::ODDS;
         $remaining = Standings::remainingStandings($standings, $lottery);

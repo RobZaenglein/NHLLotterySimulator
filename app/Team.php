@@ -6,6 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
+    protected $fillable = [
+        'games_played',
+        'points',
+        'wins',
+        'losses',
+        'overtime_losses',
+        'regulation_overtime_wins',
+        'division_ranking',
+        'points_percentage',
+        'last_ten_record',
+        'streak'
+    ];
+
     public function gameTeam()
     {
         return $this->hasMany(GameTeam::class);
@@ -20,13 +33,30 @@ class Team extends Model
     {
         $teamGames = Team::where('id', $teamId)
             ->with(['game' => function($game) use($teamId) {
-                $game->whereDate('game_date', '>=', new \DateTime());
+                $game->whereDate('game_date', '>=', (new \DateTime())->format('Y-m-d'));
                 $game->orderBy('game_date', 'ASC');
                 $game->limit(5);
                 $game->with(['gameTeam' => function($gameTeam) use($teamId) {
                     $gameTeam->where('team_id', '!=', $teamId);
+                    $gameTeam->with('team');
                 }]);
-            }])->get();
+            }])->first();
+
+        return $teamGames;
+    }
+
+    public static function recentGames($teamId)
+    {
+        $teamGames = Team::where('id', $teamId)
+            ->with(['game' => function($game) use($teamId) {
+                $game->whereDate('game_date', '<=', (new \DateTime())->format('Y-m-d'));
+                $game->orderBy('game_date', 'ASC');
+                $game->limit(5);
+                $game->with(['gameTeam' => function($gameTeam) use($teamId) {
+                    $gameTeam->where('team_id', '!=', $teamId);
+                    $gameTeam->with('team');
+                }]);
+            }])->first();
 
         return $teamGames;
     }
