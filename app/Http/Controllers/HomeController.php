@@ -13,15 +13,14 @@ class HomeController extends Controller
     {
         $standings = Team::orderBy('points_percentage', 'DESC')->get();
         $lottery = Standings::determineLottery($standings);
-        $odds = Lottery::ODDS;
         $remaining = Standings::remainingStandings($standings, $lottery);
         $todaysGames = Game::todaysGames();
 
         return view('home', [
             'lottery' => $lottery,
-            'odds' => $odds,
             'playoffs' => $remaining,
-            'todaysGames' => $todaysGames
+            'todaysGames' => $todaysGames,
+            'odds' => Lottery::ODDS_PURE
         ]);
 
     }

@@ -8574,3 +8574,19 @@ div.team-info > div > a {
   }
 }
 
+img.logo-large {
+  max-height: 75px;
+}
+
+@media (min-width: 768px) {
+  img.logo-large {
+    max-height: 100px;
+  }
+}
+
+@media (min-width: 992px) {
+  img.logo-large {
+    max-height: 140px;
+  }
+}
+

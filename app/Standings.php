@@ -45,6 +45,12 @@ class Standings
             return $team1->points_percentage > $team2->points_percentage ? 1 : -1;
         });
 
+        foreach($lottery as $i => &$team) {
+            $team->lottery_position = $i + 1;
+            $team->lottery_odds = Lottery::ODDS[$i];
+            $team->index = $i;
+        }
+
         return collect($lottery);
     }
 
